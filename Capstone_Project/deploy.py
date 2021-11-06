@@ -366,6 +366,13 @@ else:
             generated_text = generate(gptmodel.to('cpu'), GPT2Tokenizer.from_pretrained('gpt2'), input, entry_count=1)
             st.write(generated_text)
 
+def file_selector(folder_path='.'):
+    filenames = os.listdir(folder_path)
+    selected_filename = st.selectbox('Select a file', filenames)
+    return os.path.join(folder_path, selected_filename)
+
+filename = file_selector()
+st.write('You selected `%s`' % filename)
 
 
 
