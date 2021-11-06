@@ -9,6 +9,7 @@ from torch.utils.data import Dataset
 import csv
 from transformers import (GPT2Tokenizer,
                           GPT2LMHeadModel)
+import os
 
 #===========================================#
 #              Load LSTM Model              #
