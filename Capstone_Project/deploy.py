@@ -201,7 +201,7 @@ class email(Dataset):
         self.tokenizer = GPT2Tokenizer.from_pretrained(gpt2_type)
         self.emails = []
 
-        with open('dataset/enron6_clean.csv', newline='') as csvfile:
+        with open('./Capstone_Project/dataset/enron6_clean.csv', newline='') as csvfile:
             email_csv = csv.reader(csvfile)
             for row in email_csv:
                 # encode text into tensors
@@ -331,7 +331,7 @@ input = st.text_area('Seed text (required)', value="Enter text here", key='input
 
 if option=='LSTM':
     if st.button('Generate!', key='lstm'):
-        net, _ = load_checkpoint('models/lstm_model.pt')
+        net, _ = load_checkpoint('./Capstone_Project/models/lstm_model.pt')
         prime = 'test'
         clean_prime = clean_string(prime)
         clean_prime = clean_string(input)
@@ -342,7 +342,7 @@ elif option=='Markov Chain':
     if st.button('Generate!', key='mm'):
         ran_mmodel = False
         if ran_mmodel == False:
-            with open('dataset/enron6_clean.txt', 'r') as f:
+            with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
                 corpus = f.read()
             corpus = corpus.replace('\n', ' ').replace('?', '.').replace('!', '.').replace('“', '.').replace('”', '.').replace('/', ' ').replace('‘', ' ').replace('-', ' ').replace('’', ' ').replace('\'', ' ').replace('=', ' ').replace('\\', ' ').replace('_', ' ')
             markov_model = model(corpus)
@@ -358,7 +358,7 @@ else:
         ran_model = False
         if ran_model == False:
             gptmodel = GPT2LMHeadModel.from_pretrained('gpt2')
-            gptmodel.load_state_dict(torch.load('models/gpt2_10epochs.pt', map_location='cpu'))
+            gptmodel.load_state_dict(torch.load('./Capstone_Project/models/gpt2_10epochs.pt', map_location='cpu'))
             gptmodel.eval()
             ran_model = True
             generated_text = generate(gptmodel.to('cpu'), GPT2Tokenizer.from_pretrained('gpt2'), input, entry_count=1)
@@ -367,13 +367,6 @@ else:
             generated_text = generate(gptmodel.to('cpu'), GPT2Tokenizer.from_pretrained('gpt2'), input, entry_count=1)
             st.write(generated_text)
 
-def file_selector(folder_path='.'):
-    filenames = os.listdir(folder_path)
-    selected_filename = st.selectbox('Select a file', filenames)
-    return os.path.join(folder_path, selected_filename)
-
-filename = file_selector()
-st.write('You selected `%s`' % filename)
 
 
 
