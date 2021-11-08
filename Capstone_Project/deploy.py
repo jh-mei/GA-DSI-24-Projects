@@ -307,6 +307,7 @@ def run_model():
     gptmodel.load_state_dict(torch.load('./Capstone_Project/models/gpt2_10epochs.pt', map_location='cpu'))
     gptmodel.eval()
     ran_model = True
+    return gptmodel
 
 @st.cache
 def run_mmodel():
@@ -314,6 +315,7 @@ def run_mmodel():
         corpus = f.read()
     corpus = corpus.replace('\n', ' ').replace('?', '.').replace('!', '.').replace('“', '.').replace('”', '.').replace('/', ' ').replace('‘', ' ').replace('-', ' ').replace('’', ' ').replace('\'', ' ').replace('=', ' ').replace('\\', ' ').replace('_', ' ')
     markov_model = model(corpus)
+    return markov_model
 
 run_model()
 run_mmodel()
