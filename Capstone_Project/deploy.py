@@ -306,16 +306,17 @@ def run_model():
     gptmodel = GPT2LMHeadModel.from_pretrained('gpt2')
     gptmodel.load_state_dict(torch.load('./Capstone_Project/models/gpt2_10epochs.pt', map_location='cpu'))
     gptmodel.eval()
-    ran_model = True
     return gptmodel
 
 @st.cache
 def run_mmodel():
-    with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
-        corpus = f.read()
     corpus = corpus.replace('\n', ' ').replace('?', '.').replace('!', '.').replace('“', '.').replace('”', '.').replace('/', ' ').replace('‘', ' ').replace('-', ' ').replace('’', ' ').replace('\'', ' ').replace('=', ' ').replace('\\', ' ').replace('_', ' ')
     markov_model = model(corpus)
     return markov_model
+
+
+with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
+    corpus = f.read()
 
 gptmodel = run_model()
 markov_model = run_mmodel()
