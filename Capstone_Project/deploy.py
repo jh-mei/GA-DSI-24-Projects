@@ -317,8 +317,8 @@ def run_mmodel():
     markov_model = model(corpus)
     return markov_model
 
-run_model()
-run_mmodel()
+gptmodel = run_model()
+markov_model = run_mmodel()
 
 
 #===========================================#
