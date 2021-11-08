@@ -301,8 +301,7 @@ def generate(
 #              Setup Code               #
 #===========================================#
 
-with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
-    corpus = f.read()
+
 
 
 @st.cache
@@ -314,6 +313,8 @@ def run_model():
 
 @st.cache
 def run_mmodel():
+    with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
+        corpus = f.read()
     corpus = corpus.replace('\n', ' ').replace('?', '.').replace('!', '.').replace('“', '.').replace('”', '.').replace('/', ' ').replace('‘', ' ').replace('-', ' ').replace('’', ' ').replace('\'', ' ').replace('=', ' ').replace('\\', ' ').replace('_', ' ')
     markov_model = model(corpus)
     return markov_model
