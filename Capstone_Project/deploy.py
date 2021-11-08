@@ -297,8 +297,26 @@ def generate(
                 output_text = f'{tokenizer.decode(output_list)}<|endoftext|>'
 
     return output_text
+#===========================================#
+#              Setup Code               #
+#===========================================#
 
+@st.cache
+def run_model():
+    gptmodel = GPT2LMHeadModel.from_pretrained('gpt2')
+    gptmodel.load_state_dict(torch.load('./Capstone_Project/models/gpt2_10epochs.pt', map_location='cpu'))
+    gptmodel.eval()
+    ran_model = True
 
+@st.cache
+def run_mmodel():
+    with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
+        corpus = f.read()
+    corpus = corpus.replace('\n', ' ').replace('?', '.').replace('!', '.').replace('“', '.').replace('”', '.').replace('/', ' ').replace('‘', ' ').replace('-', ' ').replace('’', ' ').replace('\'', ' ').replace('=', ' ').replace('\\', ' ').replace('_', ' ')
+    markov_model = model(corpus)
+
+run_model()
+run_mmodel()
 
 
 #===========================================#
@@ -340,32 +358,14 @@ if option=='LSTM':
 
 elif option=='Markov Chain':
     if st.button('Generate!', key='mm'):
-        ran_mmodel = False
-        if ran_mmodel == False:
-            with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
-                corpus = f.read()
-            corpus = corpus.replace('\n', ' ').replace('?', '.').replace('!', '.').replace('“', '.').replace('”', '.').replace('/', ' ').replace('‘', ' ').replace('-', ' ').replace('’', ' ').replace('\'', ' ').replace('=', ' ').replace('\\', ' ').replace('_', ' ')
-            markov_model = model(corpus)
-            generated_text = generate_text(input, k=4, max_len=char_len)
-            st.write(generated_text)
-        else:
-            generated_text = generate_text(input, k=4, max_len=char_len)
-            st.write(generated_text)
-
+        generated_text = generate_text(input, k=4, max_len=char_len)
+        st.write(generated_text)
 
 else:
     if st.button('Generate!', key='gpt'):
-        ran_model = False
-        if ran_model == False:
-            gptmodel = GPT2LMHeadModel.from_pretrained('gpt2')
-            gptmodel.load_state_dict(torch.load('./Capstone_Project/models/gpt2_10epochs.pt', map_location='cpu'))
-            gptmodel.eval()
-            ran_model = True
-            generated_text = generate(gptmodel.to('cpu'), GPT2Tokenizer.from_pretrained('gpt2'), input, entry_count=1)
-            st.write(generated_text)
-        else:
-            generated_text = generate(gptmodel.to('cpu'), GPT2Tokenizer.from_pretrained('gpt2'), input, entry_count=1)
-            st.write(generated_text)
+        generated_text = generate(gptmodel.to('cpu'), GPT2Tokenizer.from_pretrained('gpt2'), input, entry_count=1)
+        st.write(generated_text)
+
 
 
 
