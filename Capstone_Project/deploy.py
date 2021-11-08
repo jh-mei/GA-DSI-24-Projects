@@ -301,6 +301,10 @@ def generate(
 #              Setup Code               #
 #===========================================#
 
+with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
+    corpus = f.read()
+
+
 @st.cache
 def run_model():
     gptmodel = GPT2LMHeadModel.from_pretrained('gpt2')
@@ -314,9 +318,6 @@ def run_mmodel():
     markov_model = model(corpus)
     return markov_model
 
-
-with open('./Capstone_Project/dataset/enron6_clean.txt', 'r') as f:
-    corpus = f.read()
 
 gptmodel = run_model()
 markov_model = run_mmodel()
