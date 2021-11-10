@@ -5,7 +5,9 @@
 Emails are a huge part of any job. Whether it be research, corporate or even education, people use this technology to leave messages, some less important than others. Some have argued that emails are to become obsolete in the future, but evidence shows that email is here to stay for the foreseeable future. For example, IMs (instant messengers) might be faster, more wieldy, but there are so many of them out there now that it is difficult to keep track of which contact uses which IM.
 
 Having said that, a [survey by Adobe](https://blog.adobe.com/en/publish/2019/09/08/if-you-think-email-is-dead--think-again.html#gs.f14pa9) have shown that employees spend a large amount of time on emails. The survey shows that the average email consumer spends about 3 hours a day on work email and 2 hours a day on personal email. 5 hours in a 24 hour day spent on email is definitely significant.
+
 <img src='imgs/emailstats.jpg' alt='stats' width='500'/>
+
 Granted, a portion of the time is spent on *reading* emails, but the other portion is spent writing them, and people have called writing emails "stressful" and "exhausting". They fear that writing too short an email reply might convey the wrong message ("thanks" or even "noted with thanks"), and they then ponder about the best way to go about crafting a reply that would not get them on the bad side of the wrong people.
 
 Now just imagine how much more productive employees could be if something was to help them write parts of their email!
