@@ -330,7 +330,6 @@ markov_model = run_mmodel()
 
 
 st.header('Capstone - Financial Email Autocomplete')
-st.caption('by Mei Junhao')
 
 df = pd.DataFrame({
   'first column': ['LSTM', 'Markov Chain', 'GPT-2']
@@ -341,11 +340,11 @@ option = st.selectbox(
      df['first column'])
 
 if option=='LSTM':
-    'LSTM is decent at text generation. Just don\'t expect them to make too much sense.'
+    'LSTM is decent at text generation. It doesn\'t tend to make too much sense though.'
 elif option=='Markov Chain':
     'Markov Chains model is alright at autocompleting incomplete words, eg. "Regar" -> "Regards". It might not give you the desired output on the first try, so in that case, try again!'
 else:
-    'GPT-2 might give you something unrelated unless you are specific about the topic in the input text. This might take a while to run.'
+    'GPT-2 requires a very concise topic in the input text for good results. This might take a while to run.'
 
 if option=='LSTM' or option=='Markov Chain':
     char_len = st.number_input('No. of chars to generate', min_value=1, max_value=None)
